@@ -26,12 +26,15 @@ class Auto(AutoAuto):
                 valid_targets.append(targets[i])
                 x_values.append(targets[i].x)
                 y_values.append(targets[i].y)
-        y_min_max = [min(y_values), max(y_values)]
-        if y_min_max[1] == auto.pos.y:
-            self.dir = False
-        if y_min_max[0] == auto.pos.y:
-            self.dir = True
-        max_x = max(x_values)
+        try:
+            y_min_max = [min(y_values), max(y_values)]
+            if y_min_max[1] == auto.pos.y:
+                self.dir = False
+            if y_min_max[0] == auto.pos.y:
+                self.dir = True
+            max_x = max(x_values)
+        except:
+            return Vertex(auto.pos.x, auto.pos.y)
         if max_x-auto.pos.x>0:
             y_values = []
             max_targets = []
